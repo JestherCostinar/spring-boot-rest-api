@@ -66,4 +66,11 @@ public class StudentController {
         System.out.println(studentId);
         return ResponseEntity.ok(student);
     }
+
+    // DeleteMapping - Remove record
+    @DeleteMapping
+    public ResponseEntity<String> deleteStudent(@PathVariable("id") int studentId) {
+        System.out.println(studentId);
+        return ResponseEntity.ok("Record has been successfully deleted");
+    }
 }
