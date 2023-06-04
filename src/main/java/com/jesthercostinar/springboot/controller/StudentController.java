@@ -57,4 +57,13 @@ public class StudentController {
         return new ResponseEntity<>(student, HttpStatus.CREATED);
     }
 
+    // PutMapping - Update student record
+    @PutMapping("{id}/update")
+    public ResponseEntity<Student> updateStudent(@RequestBody Student student,
+                                                 @PathVariable("id") int studentId) {
+        System.out.println(student.getFirstName());
+        System.out.println(student.getLastName());
+        System.out.println(studentId);
+        return ResponseEntity.ok(student);
+    }
 }
