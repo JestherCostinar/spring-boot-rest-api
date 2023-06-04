@@ -31,7 +31,7 @@ public class StudentController {
     }
 
     // Get Mapping with Path Variable
-    @GetMapping("student/{id}/{first-name}/{last-name}")
+    @GetMapping("{id}/{first-name}/{last-name}")
     public ResponseEntity<Student> getSudentPathVariable(@PathVariable("id") int studentId,
                                                          @PathVariable("first-name") String firstName,
                                                          @PathVariable("last-name") String lastName) {
@@ -40,12 +40,21 @@ public class StudentController {
     }
 
     // Get Mapping with Query Parameter
-    @GetMapping("/student/query")
+    @GetMapping("/query")
     public ResponseEntity<Student> getStudentQuery(@RequestParam int id,
                                                    @RequestParam String firstName,
                                                    @RequestParam String lastName) {
         Student student = new Student(id, firstName, lastName);
         return ResponseEntity.ok(student);
+    }
+
+    // POST Mapping - Create student record
+    @PostMapping("/create")
+    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
+        System.out.println(student.getId());
+        System.out.println(student.getFirstName());
+        System.out.println(student.getLastName());
+        return new ResponseEntity<>(student, HttpStatus.CREATED);
     }
 
 }
