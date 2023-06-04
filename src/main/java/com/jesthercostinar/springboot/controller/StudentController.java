@@ -4,10 +4,7 @@ import com.jesthercostinar.springboot.bean.Student;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +30,21 @@ public class StudentController {
         return ResponseEntity.ok(students);
     }
 
+    // Get Mapping with Path Variable
     @GetMapping("student/{id}/{first-name}/{last-name}")
     public ResponseEntity<Student> getSudentPathVariable(@PathVariable("id") int studentId,
                                                          @PathVariable("first-name") String firstName,
                                                          @PathVariable("last-name") String lastName) {
         Student student = new Student(studentId, firstName, lastName);
+        return ResponseEntity.ok(student);
+    }
+
+    // Get Mapping with Query Parameter
+    @GetMapping("/student/query")
+    public ResponseEntity<Student> getStudentQuery(@RequestParam int id,
+                                                   @RequestParam String firstName,
+                                                   @RequestParam String lastName) {
+        Student student = new Student(id, firstName, lastName);
         return ResponseEntity.ok(student);
     }
 
